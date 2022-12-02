@@ -10,24 +10,17 @@ import static org.junit.Assert.*;
 
 public class LogicTest {
 
- /*   @Ignore
-    @Test
-    public void move()
-            throws FigureNotFoundException, OccupiedCellException, ImpossibleMoveException {
-        Logic logic = new Logic();
-        logic.add(new BishopBlack(Cell.C1));
-        logic.move(Cell.C1, Cell.H6);
-    }
-*/
     @Test(expected = ImpossibleMoveException.class)
-    public void whenImpossibleMoveException() throws OccupiedCellException, FigureNotFoundException {
+    public void whenImpossibleMoveException()
+            throws OccupiedCellException, FigureNotFoundException {
         Logic logic = new Logic();
         logic.add(new BishopBlack(Cell.C1));
         logic.move(Cell.C1, Cell.H2);
     }
 
     @Test(expected = OccupiedCellException.class)
-    public void whenOccupiedCellException() throws OccupiedCellException, FigureNotFoundException {
+    public void whenOccupiedCellException()
+            throws ImpossibleMoveException, FigureNotFoundException, OccupiedCellException {
         Logic logic = new Logic();
         logic.add(new BishopBlack(Cell.C1));
         logic.add(new BishopBlack(Cell.E3));
@@ -35,7 +28,8 @@ public class LogicTest {
     }
 
     @Test(expected = FigureNotFoundException.class)
-    public void whenFigureNotFoundException() throws OccupiedCellException, FigureNotFoundException {
+    public void whenFigureNotFoundException()
+            throws OccupiedCellException, FigureNotFoundException {
         Logic logic = new Logic();
         logic.add(new BishopBlack(Cell.C1));
         logic.move(Cell.C2, Cell.G5);
